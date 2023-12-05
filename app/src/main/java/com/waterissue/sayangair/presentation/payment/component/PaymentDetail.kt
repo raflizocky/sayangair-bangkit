@@ -12,16 +12,23 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,9 +36,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.waterissue.sayangair.presentation.theme.BlueSea
+import com.waterissue.sayangair.presentation.theme.LightBlue
+import com.waterissue.sayangair.presentation.theme.LightSecondary
 
 @Composable
 fun PaymentDetail() {
+    var selectedCard by remember { mutableStateOf<String?>(null) }
+    var showSuccessDialog by remember { mutableStateOf(false) }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,8 +53,7 @@ fun PaymentDetail() {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
-                .background(MaterialTheme.colorScheme.primary),
+                .padding(16.dp),
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 10.dp
             )
@@ -56,7 +67,7 @@ fun PaymentDetail() {
                     text = "Detail Pembayaran",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black,
+                    color = LightSecondary,
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
                 Text(
@@ -121,34 +132,81 @@ fun PaymentDetail() {
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
 
-                PaymentCard("BCA", Icons.Default.AccountBox)
-                PaymentCard("BRI", Icons.Default.AccountBox)
-                PaymentCard("Mandiri", Icons.Default.AccountBox)
+                PaymentCard(
+                    "BCA",
+                    Icons.Default.AccountBox,
+                    cardColor = LightBlue,
+                    selectedCard,
+                ) {
+                    selectedCard = "BCA"
+                }
+                PaymentCard(
+                    "BRI", Icons.Default.AccountBox, cardColor = LightBlue,
+                    selectedCard
+                ) {
+                    selectedCard = "BRI"
+                }
+                PaymentCard(
+                    "Mandiri", Icons.Default.AccountBox, cardColor = LightBlue,
+                    selectedCard
+                ) {
+                    selectedCard = "Mandiri"
+                }
             }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { /* Handle click on bayar button */ },
+            onClick = {
+                if (selectedCard != null) {
+                    showSuccessDialog = true
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.secondary)
-                .height(48.dp),
+                .height(48.dp)
+                .background(
+                    color = if (selectedCard != null) BlueSea else Color.Gray,
+                    shape = RoundedCornerShape(8.dp)
+                ),            colors = ButtonDefaults.outlinedButtonColors(
+                containerColor = if (selectedCard != null) BlueSea else Color.Green,
+                disabledContentColor = contentColorFor(LightBlue)
+            ),
+            enabled = selectedCard != null
         ) {
             Text("Bayar")
+        }
+
+        if (showSuccessDialog) {
+            AlertDialog(
+                onDismissRequest = { showSuccessDialog = false },
+                title = { Text("Pembayaran Berhasil") },
+                text = { Text("Terima kasih! Pembayaran Anda telah berhasil.") },
+                confirmButton = {
+                    Button(onClick = { showSuccessDialog = false }) { Text("OK") }
+                }
+            )
         }
     }
 }
 
 @Composable
-fun PaymentCard(cardName: String, icon: ImageVector) {
+fun PaymentCard(
+    cardName: String,
+    icon: ImageVector,
+    cardColor: Color,
+    selectedCard: String?,
+    onClick: () -> Unit,
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .background(MaterialTheme.colorScheme.primary)
-            .clickable { /* Handle click on metode pembayaran card */ },
+            .clickable { onClick() },
+        colors = CardDefaults.cardColors(
+            containerColor = if (cardName == selectedCard) cardColor else Color.White
+        ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 10.dp
         )
