@@ -3,6 +3,7 @@ package com.waterissue.sayangair.presentation.reward
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,14 +14,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.contentColorFor
@@ -36,11 +42,29 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.waterissue.sayangair.presentation.reward.component.RewardItem
 import com.waterissue.sayangair.presentation.theme.BlueSea
+import com.waterissue.sayangair.presentation.theme.LightSecondary
 
 @Composable
-fun RewardScreen(viewModel: RewardViewModel = hiltViewModel()) {
+fun RewardScreen(viewModel: RewardViewModel = hiltViewModel(), navController: NavHostController) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.End,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        IconButton(
+            onClick = {
+                navController.navigate("reward_info")
+            },
+            modifier = Modifier
+                .size(60.dp)
+        ) {
+            Icon(imageVector = Icons.Default.Info, contentDescription = null)
+        }
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -51,7 +75,7 @@ fun RewardScreen(viewModel: RewardViewModel = hiltViewModel()) {
                 text = "Jumlah Poin: ${viewModel.userPoints.value}",
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black,
+                color = LightSecondary,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 8.dp)
@@ -200,14 +224,9 @@ fun RewardItemCard(reward: RewardItem, viewModel: RewardViewModel) {
                         }
                     )
                 }
+
+                else -> {}
             }
         }
     }
-}
-
-
-@Composable
-@Preview(showBackground = true)
-fun X() {
-    RewardScreen()
 }
