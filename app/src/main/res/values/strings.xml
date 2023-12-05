@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">Sayang Air</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_reawrd">Hadiah</string>
-    <string name="menu_bayar">Bayar</string>
-    <string name="menu_donasi">Donasi</string>
-    <string name="menu_profil">Profil</string>
-    <string name="placeholder_search">Cari donasi yang anda inginkan</string>
-</resources>
