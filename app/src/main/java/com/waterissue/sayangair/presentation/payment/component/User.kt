@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.waterissue.sayangair.presentation.theme.LightSecondary
 
 @Composable
 fun User() {
@@ -18,12 +18,12 @@ fun User() {
     ) {
         Text(
             text = "Tagihan air anda:",
-            color = Color.Black,
+            color = LightSecondary,
             fontSize = 25.sp,
         )
         Text(
             text = "(per 01 Desember 2023)",
-            color = Color.Gray,
+            color = LightSecondary,
             fontSize = 12.sp,
             modifier = Modifier.padding(top = 4.dp)
         )
