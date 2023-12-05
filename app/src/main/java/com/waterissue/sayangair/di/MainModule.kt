@@ -1,6 +1,7 @@
 package com.waterissue.sayangair.di
 
 import android.content.Context
+import android.net.ConnectivityManager
 import com.waterissue.sayangair.domain.repository.DataStoreRepository
 import dagger.Module
 import dagger.Provides
@@ -18,5 +19,11 @@ object MainModule {
     fun provideDataStoreRepository(
         @ApplicationContext context: Context
     ) = DataStoreRepository(context = context)
+
+    @Provides
+    @Singleton
+    fun provideConnectivityManager(@ApplicationContext context: Context): ConnectivityManager {
+        return context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    }
 
 }
