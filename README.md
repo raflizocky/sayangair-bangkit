@@ -19,16 +19,16 @@ than the previous month.
 6. Account Verification: Users are required to verify their account by scanning their KTP. This verification enables application
 to access the user’s PDAM/PAM water usage information.
 
-### How to use
+## How to use
 1. Login and Register: To enter the application, users must register first
 2. Users enter the profile menu to verify identity data
 3. User data appears in the dashboard menu
 
-# Pengembangan Aplikasi
-Aplikasi Sayang Air menggunakan teknologi sebagai berikut:
-1. Bahasa Pemrograman: [Kotlin, Phyton]
-2. Kerangka: [Android Studio]
-3. Alat Pengembangan: [Visual Studio Code]
+# Application Development
+The Sayang Air application uses the following technology:
+1. Programming Language: [Kotlin, Python]
+2. Framework: [Android Studio]
+3. Development Tools: [Visual Studio Code]
 
 
 Through Sayang Air, we hope that everyone in Indonesia will participate in addressing the water crisis by controlling water usage in their daily lives. 
