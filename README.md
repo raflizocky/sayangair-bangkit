@@ -24,13 +24,13 @@ to access the user’s PDAM/PAM water usage information.
 2. Users enter the profile menu to verify identity data
 3. User data appears in the dashboard menu
 
-# Application Development
+## Application Development
 The Sayang Air application uses the following technology:
 1. Programming Language: [Kotlin, Python]
 2. Framework: [Android Studio]
 3. Development Tools: [Visual Studio Code]
 
-# APi
+## APi
 1. Cloud Run
 https://cc-sayang-air-img1-jrmcaefmfa-et.a.run.app/prediction
 https://cc-sayang-air-img1-jrmcaefmfa-et.a.run.app/
