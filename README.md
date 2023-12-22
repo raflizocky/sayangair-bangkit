@@ -33,9 +33,10 @@ The Sayang Air application uses the following technology:
 ## APi
 1. Cloud Run
 https://cc-sayang-air-img1-jrmcaefmfa-et.a.run.app/prediction
+
 https://cc-sayang-air-img1-jrmcaefmfa-et.a.run.app/
 
-2. API output model : https://sayang-air-be45f-default-rtdb.asia-southeast1.firebasedatabase.app/users
+3. API output model : https://sayang-air-be45f-default-rtdb.asia-southeast1.firebasedatabase.app/users
 
 
 
