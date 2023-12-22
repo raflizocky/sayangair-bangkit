@@ -30,6 +30,15 @@ The Sayang Air application uses the following technology:
 2. Framework: [Android Studio]
 3. Development Tools: [Visual Studio Code]
 
+# APi
+1. Cloud Run
+https://cc-sayang-air-img1-jrmcaefmfa-et.a.run.app/prediction
+https://cc-sayang-air-img1-jrmcaefmfa-et.a.run.app/
+
+2. API output model : https://sayang-air-be45f-default-rtdb.asia-southeast1.firebasedatabase.app/users
+
+
+
 
 Through Sayang Air, we hope that everyone in Indonesia will participate in addressing the water crisis by controlling water usage in their daily lives. 
 Every drop of water is precious to those who live in areas prone to water scarcity. Start saving water and make a difference today!
